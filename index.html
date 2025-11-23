@@ -54,6 +54,10 @@
             animation: fade-in 0.5s ease-out forwards;
         }
 
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+
         .timer-circle {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -73,6 +77,48 @@
 
         .btn-hover:active {
             transform: translateY(0);
+        }
+
+        .task-text {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .task-text::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: width 0.4s ease;
+        }
+
+        .task-completed .task-text {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .task.completed .task-text::after {
+            width: 100%;
+        }
+
+        .task-item {
+            animation: fade-in 0.3s ease-out;
+        }
+
+        #task-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #task-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+
+        #task-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
         }
 
         body {
@@ -103,7 +149,11 @@
         <h1 class="text-4xl font-bold text-white text-center mb-8 float">Pomodoro</h1>
         
         <div class="flex justify-center mb-8">
-            <div class="timer-circle relative w-64 h-64 rounded-full glass flex items-center justify-center pulse-ring">
+            <div class="timer-circle relative w-64 h-64 rounded-full glass flex items-center justify-center">
+                <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 256 256">
+                    <circle cx="128" cy="128" r="115" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+                    <circle id="progress-ring" cx="128" cy="128" r="115" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="722.5" stroke-dashoffset="0" class="progress-ring-circle"/>
+                </svg>
                 <div class="absolute inset-4 rounded-full bg-white bg-opacity-10"></div>
                 <div class="relative z-10 text-center">
                     <div id="timer" class="text-6xl font-bold text-white mb-2">25:00</div>
@@ -135,6 +185,17 @@
 
         <div class="text-center">
             <p class="text-white text-opacity-70 text-sm">Sesja #<span id="session-count">1</span></p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-white border-opacity-10">
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="task-input" placeholder="Dodaj zadanie..."
+                class="flex-1 bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-50 px-4 py-2 rounded-xl border border-white border-opacity-10 focus:outline-none focus:border-opacity-30 transition-all">
+                <button id="add-task-btn" class="btn-hover bg-white bg-opacity-20 text-white px-4 py-2 rounded-xl font-medium">
+                    +
+                </button>
+            </div>
+            <ul id="task-list" class="space-y-2 max-h-48 overflow-y-auto"></ul>
         </div>
     </div>
 

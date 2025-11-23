@@ -15,6 +15,9 @@ Minimalistyczny timer Pomodoro z powiadomieniami push.
 - **Session Counter** - Śledzenie liczby ukończonych sesji
 - **Auto Mode Switch** - Inteligentne przełączanie między pracą a przerwami
 
+### Task Management
+- **Task List** - Dodawanie zadań do wykonania
+
 ### UI/UX
 - Płynne animacje i przejścia
 - Efekt glassmorphism na kartach
@@ -31,6 +34,7 @@ Minimalistyczny timer Pomodoro z powiadomieniami push.
 - **Tailwind CSS** - Stylizacja oparta na użyteczności poprzez CDN
 - **Vanilla JavaScript (ES6+)** - Logika timera i powiadomienia
 - **Notifications API** - Desktop push notifications
+- **SVG** - Animowany progress ring
 
 ### Architektura
 - Tylko po stronie klienta - nie wymaga backendu
@@ -91,8 +95,7 @@ pomodoro-timer/
 - **Text:** White with varying opacity
 
 ### Animacje
-- Efekt pulsującego pierścienia na okręgu timera
-- Animacja unoszenia się tytułu
+- Progress ring
 - Płynne pojawianie się podczas ładowania
 - Przejścia po najechaniu kursorem na przyciski
 - Przejścia tła z efektem ease-in-out trwające 0.8 s
